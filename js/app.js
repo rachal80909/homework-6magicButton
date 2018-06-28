@@ -20,6 +20,7 @@ $("document").ready(function() {
             //line 9 grabbing the div to say where we want button
 
             //sets up click event
+            <
             script type = "text/javascript" > < /script>
 
             $(document).on("click", "button", function() {
@@ -86,12 +87,11 @@ $("document").ready(function() {
                                             // Adding the button to the HTML
                                             $("#movies-view").append(a);
                                         }
-                                    }
-
+                                    } <
+                                    div id = GIFArea > < /div> <
+                                    script type = "text/javascript" > < /script>
                                     // This function handles events where one button is clicked
-                                    $("#add-movie").on("click", function(event) {
-                                        // event.preventDefault() prevents the form from trying to submit itself.
-                                        // We're using a form so that the user can hit enter instead of clicking the button if they want
+                                    $("button").on("click", function(event) {
                                         event.preventDefault();
 
                                         // This line will grab the text from the input box
@@ -104,24 +104,25 @@ $("document").ready(function() {
                                     });
 
                                     // Calling the renderButtons function at least once to display the initial list of movies
-                                    renderButtons(); <
-                                    /script> <
+                                    renderButtons(); < /script>  <
+                                    /div> <
                                     /div>
 
 
 
-                                    //callback function receiver
-                                    // .done(function(response) {
-                                    //     console.log(response)
-                                    //         //create variable of image url, it's a strings
-                                    //     var imageUrl = response.data.image_original_url;
+                                    callback
+                                    function receiver
+                                    .done(function(response) {
+                                            console.log(response)
+                                                //create variable of image url, it's a strings
+                                            var imageUrl = response.data.image_original_url;
 
-                                    //     //use jquery to create HTML element o ftype image, img
-                                    //     var catImage = $("<img>");
+                                            //use jquery to create HTML element o ftype image, img
+                                            var catImage = $("<img>");
 
-                                    //     //set the source and alt of our image, to prev define url and cat image respectively
-                                    //     catImage.attr("src", imageUrl);
-                                    //     catImage.attr("alt", "cat image");
+                                            //set the source and alt of our image, to prev define url and cat image respectively
+                                            catImage.attr("src", imageUrl);
+                                            catImage.attr("alt", "cat image");
 
-                                    //     //prepend the image to our images div (that's the div with an id of images)
-                                    //     $("#images").prepend(catImage);
+                                            //prepend the image to our images div (that's the div with an id of images)
+                                            $("#images").prepend(catImage);
