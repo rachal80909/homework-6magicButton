@@ -3,55 +3,46 @@
 
 <head>
     <meta charset="utf-8">
-    <html lang="en">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <title>The Magic Button</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    <link rel="stylesheet" href="./style.css">
 
     <!--<link href="css/style ajax .css" rel="stylesheet">-->
 
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 
+
+</head>
+
+<body>
+
+    <form id="add button">
+        <label for="user-input">Add your own button!!</label>
+        <input type="text" id="user-input"><br>
+        <!-- Button triggers new movie to be added -->
+        <button type="submit" id="submit">submit</button>
+    </form>
+
+    <div id="animalButtonsDiv"></div>
+
+
+
+    <!--<button data-animals="cats">cats</button>
+    <button data-animals="goats">goats </button>
+    <button data-animals="unicorns">unicorns</button>
+    <button data-animals="lizards">lizards</button>
+    <button data-animals="Samuel Jackson">sam jackson</button>-->
+
+    <div class="container">
+        <div class="row" id="images">
+
+        </div>
+    </div>
     <script src="./js/app.js"></script>
 
-    <title>Magic Button</title>
+</body>
 
-    <!--bootstrap grid page setup-->
-    <div class="col-sm-9">
-        <div style="clear:both; margin-bottom: 80px;"></div>
-        <div id="buttonContainer">
-        </div>
-        <div id="images">
-            <div class="container-fluid">
-                <div class="row">
-                </div>
-            </div>
-
-            <!--Your app should take the topics in this array and create buttons in your HTML. * Try using a loop that appends a button for each string in the array. -->
-            <!--3. When the user clicks on a button, the page should grab 10 static, non-animated gif images from the GIPHY API and place them on the page. -->
-
-            <!--
-5. Under every gif, display its rating (PG, G, so on). * This data is provided by the GIPHY API. * Only once you get images displaying with button presses should you move on to the next step. -->
-
-            <!--4. When the user clicks one of the still GIPHY images, the gif should animate. If the user clicks the gif again,
-it should stop playing. >
-
-<!-Add a form to your page takes the
-value from a user input box and adds it into your `topics` array. Then make a function call that takes each topic in the array remakes the buttons on the page. 7. Deploy your assignment to Github Pages.
-
--->
-            <form id="add button">
-                <label for="user-input">Add your own button!!</label>
-                <input type="text" id="movie-input"><br>
-
-                <!-- Button triggers new movie to be added -->
-                <input id="add-button type=" submit " value="Add a giphy button ">
-  </form>
-
-            </body>
-
-    </html>
+</html>

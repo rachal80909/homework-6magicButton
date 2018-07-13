@@ -1,128 +1,168 @@
 $("document").ready(function() {
 
-            var animals = ["unicorn", "goat", "dogs", "rabbit", "cats"];
-            //made an array
 
-            for (var i = 0; i < animals.length; i++) {
-                var button = $("<button>");
-                button.attr("class", "animalButton");
-                button.attr('data-type', animals[i]);
-                button.data("topic", animals[i]);
-                button.append(animals[i]);
-                $("#buttonContainer").append(button);
-                console.log(animals[i])
+    //made an array
+
+    // for (var i = 0; i < animals.length; i++) {
+    //     var button = $("<button>");
+    //     button.attr("class", "animalsButton");
+    //     button.attr('data-type', animals[i]);
+    //     button.data("topic", animals[i]);
+    //     button.append(animals[i]);
+    //     $("#buttonContainer").append(button);
+    //     // console.log(animals[i]);
+    // }
+
+    // STEP 1 
+    // Make render buttons function
+    // Loop through animals array and make a 
+    // button for each one
+    // Then print the button to the html
+    //<button data-animals="cats">cats</button>
+
+
+    // STEP 2
+    // Click event for animal buttons
+    // Grab the animal button data
+    // plug that data into the AJAX API call
+    // print the giphys from the AJAX call to the html
+
+    // STEP 3
+    // make submit click event for making new animal button
+    // take the user input and add it to the array of animals
+    // Then run the render buttons function again
+
+    var animals = ["unicorn", "goat", "cat", "lizard", "cats"];
+
+    function renderButtons() {
+        $("#animalButtonsDiv").html("");
+        for (var i = 0; i < animals.length; i++) {
+            var newButtonDiv = `
+                <button data-animals=${animals[i]} class="animalButton">
+                    ${animals[i]}
+                </button>`;
+
+            $("#animalButtonsDiv").append(newButtonDiv);
+        }
+    }
+    renderButtons();
+
+    $(document).on("click", ".animalButton", function() {
+        var searchParameter = $(this).attr("data-animals");
+        // console.log("searchParameter: " + searchParameter);
+
+        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=l191LgYnB9k4bz4tWIJs1suXWF1W1Ezy&limit=10&q=" + searchParameter;
+        $("#images").html("");
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).done(function(response) {
+            console.log(JSON.stringify(response));
+            for (let i = 0; i < response.data.length; i++) {
+                var animated = response.data[i].images.fixed_height.url;
+                var still = response.data[i].images.fixed_height_still.url;
+
+                var newGifImage = `
+                <div class="col-md-4">
+                    <img src=${still} data-still=${still} data-animated=${animated} data-state="still" class="animalGIf" />
+                </div>
+                `;
+
+                $("#images").append(newGifImage);
+
             }
-            //made a for loop (making buttons)
-            //made html object and assigned a variable
-            //.attr added a class to the button
-            //data adds variable inside button
-            //line 8 is text for button
-            //line 9 grabbing the div to say where we want button
+        });
+    })
 
-            //sets up click event
-            <
-            script type = "text/javascript" > < /script>
+    $(document).on("click", "#submit", function(event) {
+        event.preventDefault()
+        var userInput = $("#user-input").val();
+        animals.push(userInput);
+        renderButtons();
+    })
 
-            $(document).on("click", "button", function() {
-                        let searchParameter = $(this).attr('data-type');
-                        //holds the serer api url
-                        //https://developers.giphy.com/docs/
+    $(document).on("click", ".animalGIf", function() {
+        var state = $(this).attr("data-state");
 
-                        //creates an ajax request using the get method
-
-                    }
-
-                    // <
-                    // script type = "text/javascript" > < /script>
-                    $('button').on('click', function() {
-                            var x = $(this.data("search");
-                                    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + searchParameter; $.ajax({
-                                        url: queryURL,
-                                        method: "GET"
-                                            // }) <
-                                            // script type = "text/javascript" > < /script>
-                                        $(".gif").on("click", function() {
-                                            // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-                                            var state = $(this).attr("data-state");
-                                            // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-
-                                            // Then, set the image's data-state to animate
-                                            // Else set src to the data-still value
-                                            if (state === "still") {
-                                                $(this).attr("src", $(this).attr("data-animate"));
-                                                $(this).attr("data-state", "animate");
-                                            } else {
-                                                $(this).attr("src", $(this).attr("data-still"));
-                                                $(this).attr("data-state", "still");
-                                            )
-                                        })
-                                    });
-
-
-                                    <
-                                    script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" > < /script> <
-                                    script type = "text/javascript" >
-                                    // Initial array of movies
-                                    var movies = ["The Matrix", "The Notebook", "Mr. Nobody", "The Lion King"];
-
-                                    // Function for displaying movie data
-                                    function renderButtons() {
-
-                                        // Deleting the movie buttons prior to adding new movie buttons
-                                        // (this is necessary otherwise we will have repeat buttons)
-                                        $("#movies-view").empty();
-
-                                        // Looping through the array of movies
-                                        for (var i = 0; i < movies.length; i++) {
-
-                                            // Then dynamicaly generating buttons for each movie in the array.
-                                            // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
-                                            var a = $("<button>");
-                                            // Adding a class
-                                            a.addClass("movie");
-                                            // Adding a data-attribute with a value of the movie at index i
-                                            a.attr("data-name", movies[i]);
-                                            // Providing the button's text with a value of the movie at index i
-                                            a.text(movies[i]);
-                                            // Adding the button to the HTML
-                                            $("#movies-view").append(a);
-                                        }
-                                    } <
-                                    div id = GIFArea > < /div> <
-                                    script type = "text/javascript" > < /script>
-                                    // This function handles events where one button is clicked
-                                    $("button").on("click", function(event) {
-                                        event.preventDefault();
-
-                                        // This line will grab the text from the input box
-                                        var movie = $("#movie-input").val().trim();
-                                        // The movie from the textbox is then added to our array
-                                        movies.push(movie);
-
-                                        // calling renderButtons which handles the processing of our movie array
-                                        renderButtons();
-                                    });
-
-                                    // Calling the renderButtons function at least once to display the initial list of movies
-                                    renderButtons(); < /script>  <
-                                    /div> <
-                                    /div>
+        if (state === "still") {
+            $(this).attr("src", $(this).attr("data-animated"))
+            $(this).attr("data-state", "animated")
+        } else if (state === "animated") {
+            $(this).attr("src", $(this).attr("data-still"))
+            $(this).attr("data-state", "still")
+        }
+    })
 
 
 
-                                    callback
-                                    function receiver
-                                    .done(function(response) {
-                                            console.log(response)
-                                                //create variable of image url, it's a strings
-                                            var imageUrl = response.data.image_original_url;
 
-                                            //use jquery to create HTML element o ftype image, img
-                                            var catImage = $("<img>");
 
-                                            //set the source and alt of our image, to prev define url and cat image respectively
-                                            catImage.attr("src", imageUrl);
-                                            catImage.attr("alt", "cat image");
 
-                                            //prepend the image to our images div (that's the div with an id of images)
-                                            $("#images").prepend(catImage);
+
+
+
+
+
+
+
+
+
+
+    //     $("button").on("click", function(event) {
+    //         event.preventDefault();
+
+    //         var searchParameter = $(this).hasClass("animalsButton") ? $(this).text().trim() : $("#user-input").val();
+    //         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=l191LgYnB9k4bz4tWIJs1suXWF1W1Ezy&limit=10&q=" + searchParameter;
+    //         $.ajax({
+    //             url: queryURL,
+    //             method: "GET"
+    //         }).done(function(response) {
+    //             // console.log(response);
+    //             for (let i = 0; i < response.data.length; i++) {
+    //               var source = response.data[i].images.downsized_large.url;
+    //                 var newImage = "<img class='gif' height='200px' src='" + source + "' />";
+
+    //                 $("#images .row").eq(0).prepend(newImage);
+    //                 $.ajax({ url: queryURL, method: "GET" })
+    //                     .done(function(response) {
+    //                         (response.data[0].rating);
+    //                         $("body").append("<p>Rating: " + response.data[0].rating + "<p>");
+
+    //                     })
+    //                 $(".gif").on("click", function() {
+    //                     // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+    //                     var state = $(this).attr("data-state");
+    //                     // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+
+    //                     // Then, set the image's data-state to animate
+    //                     // Else set src to the data-still value
+    //                     if (state === "still") {
+    //                         $(this).attr("src", $(this).attr("data-animate"));
+    //                         $(this).attr("data-state", "animate");
+    //                     } else {
+    //                         $(this).attr("src", $(this).attr("data-still"));
+    //                         $(this).attr("data-state", "still");
+    //                     }
+
+    //                 })
+    //             }
+    //             // var animal = $("#user-input").val();
+
+    //             // console.log($("button[data-type=" + searchParameter + "]").length);
+    //             if ($("button[data-type=" + searchParameter + "]").length == 0) {
+    //                 var button = $("<button>");
+    //                 button.attr("class", "animalButton");
+    //                 button.attr('data-type', searchParameter);
+    //                 button.data("topic", searchParameter);
+    //                 button.append(searchParameter);
+    //                 $("#buttonContainer").append(button);
+    //             }
+    //             // $.ajax({ url: queryURL, method: 'GET' })
+    //             //     .done(function(response) {
+    //             //             $("body).append(" < p > Rating: "+response.data[0].rating+" < /p>");
+    //             // })
+
+    //         });
+    //     });
+});
