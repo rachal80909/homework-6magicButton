@@ -62,10 +62,12 @@ $("document").ready(function() {
             for (let i = 0; i < response.data.length; i++) {
                 var animated = response.data[i].images.fixed_height.url;
                 var still = response.data[i].images.fixed_height_still.url;
+                var rating = response.data[i].rating;
 
                 var newGifImage = `
                 <div class="col-md-4">
                     <img src=${still} data-still=${still} data-animated=${animated} data-state="still" class="animalGIf" />
+                    <p>rating: ${rating}</p>
                 </div>
                 `;
 
